@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: 150px;
+  height: 60px;
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #2a4d69;
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  color: #556677;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1e355d;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+.score-value {
+  font-size: 2rem;
+  color: #244d6f;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #337ab7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #285e8e;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+.ratio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.ratio-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease;
+}
+
+.ratio-box:hover {
+  transform: scale(1.03);
+}
+
+.ratio-box .label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ratio-box .value {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.ratio-box.excellent {
+  border-left: 6px solid #28a745;
+}
+.ratio-box.good {
+  border-left: 6px solid #17a2b8;
+}
+.ratio-box.average {
+  border-left: 6px solid #ffc107;
+}
+.ratio-box.zero {
+  border-left: 6px solid #dc3545;
+}

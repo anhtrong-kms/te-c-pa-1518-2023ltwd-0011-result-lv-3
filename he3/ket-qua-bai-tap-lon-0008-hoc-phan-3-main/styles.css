@@ -1,0 +1,16 @@
+:root{--card-radius:1rem}
+.bg-gradient-primary{background:linear-gradient(90deg,#0d6efd,#6610f2)}
+.bg-hero{background:linear-gradient(135deg, rgba(13,110,253,.85), rgba(102,16,242,.85));}
+.card-soft{border-radius:var(--card-radius);box-shadow:0 6px 18px rgba(33,37,41,.06);background:#fff}
+.searchbar{max-width:560px}
+.kpi .card{border:0}
+.table-sticky thead th{position:sticky;top:0;z-index:1;background:#fff}
+.badge-score{font-size:.95rem}
+footer.footer{box-shadow:0 -4px 14px rgba(33,37,41,.05)}
+.word-like-table thead th{background:#f8f9fa;text-transform:uppercase;letter-spacing:.02em;font-size:.8rem}
+.word-like-table tbody th{width:28%;white-space:nowrap}
+.word-like-table td,.word-like-table th{vertical-align:top}
+.progress.thin{height:.5rem}
+.tag{display:inline-block;border:1px solid rgba(0,0,0,.1);padding:.2rem .5rem;border-radius:999px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+blockquote.excerpt{border-left:.25rem solid #0d6efd;padding-left:1rem;color:#495057;background:#f8f9ff;border-radius:.5rem}
+@media print{nav,header,.controls-hide-on-print{display:none!important}.card,.card-soft{box-shadow:none!important;border:1px solid #ddd}}

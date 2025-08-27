@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Kết Quả Kiểm Tra</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" /> 
+
+  <style>
+    :root {
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --light-bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-main: #2c3e50;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #dbe9f4, #f7faff);
+      margin: 0;
+      padding: 0;
+      color: var(--text-main);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      width: 150px;
+      border-radius: 8px;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 26px;
+      color: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--secondary);
+    }
+
+    .card {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .score-value {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      color: #e74c3c;
+      margin-top: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo {
+        margin-bottom: 10px;
+      }
+    }
+    .ratio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.ratio-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease;
+}
+
+.ratio-box:hover {
+  transform: scale(1.03);
+}
+
+.ratio-box .label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ratio-box .value {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.ratio-box.excellent {
+  border-left: 6px solid #28a745;
+}
+.ratio-box.good {
+  border-left: 6px solid #17a2b8;
+}
+.ratio-box.average {
+  border-left: 6px solid #ffc107;
+}
+.ratio-box.zero {
+  border-left: 6px solid #dc3545;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="logo.png" alt="Logo" class="logo" />
+      <div class="header-text">
+        <h1>Kết Quả Đánh Giá Kiểm Tra Lần 1</h1>
+        <p class="subtitle">Học phần 3 - Lập trình hướng đối tượng</p>
+      </div>
+    </header>
+
+    <section class="class-info card">
+      <h2><i class="fas fa-info-circle"></i> Thông Tin Lớp Học</h2>
+      <ul>
+        <li><strong>Mã lớp:</strong> TE-C-PA-1</li>
+        <li><strong>Môn học:</strong> Lập Trình Web Django - Pathway</li>
+        <li><strong>Học phần:</strong> Học phần 3 - Lập trình hướng đối tượng</li>
+        <li><strong>Khung giờ:</strong> Chủ nhật &lt;14:00 - 16:00&gt;</li>
+        <li><strong>Giáo viên:</strong> Nguyễn Anh Trọng</li>
+        <li><strong>Nội dung học tập:</strong> Tìm hiểu về lập trình hướng đối tượng, lớp, đối tượng, kế thừa, dự án</li>
+      </ul>
+    </section>
+
+    <section class="average-score card">
+      <h2><i class="fas fa-chart-line"></i> Điểm Trung Bình Toàn Lớp</h2>
+      <p id="average-score" class="score-value">...</p>
+    </section>
+    <section class="score-ratio card">
+  <h2><i class="fas fa-percentage"></i> Báo Cáo Tỷ Lệ Điểm</h2>
+  <div class="ratio-grid">
+    <div class="ratio-box excellent">
+      <div class="label">Điểm = 10</div>
+      <div class="value" id="ratio-10">--</div>
+    </div>
+    <div class="ratio-box good">
+      <div class="label">Điểm ≥ 8.0</div>
+      <div class="value" id="ratio-8plus">--</div>
+    </div>
+    <div class="ratio-box average">
+      <div class="label">Dưới 8.0</div>
+      <div class="value" id="ratio-under8">--</div>
+    </div>
+    <div class="ratio-box zero">
+      <div class="label">Điểm = 0</div>
+      <div class="value" id="ratio-0">--</div>
+    </div>
+  </div>
+</section>
+
+
+        <section class="problem-statement card">
+  <h2><i class="fas fa-book"></i> Đề Bài</h2>
+  <p>
+    Để quản lý nhân sự và tổ chức các dự án phần mềm tại công ty CMC Global, bộ phận nhân sự cần lập hợp đồng lao động cho các nhân viên tham gia dự án. Một hợp đồng lao động sẽ chứa các thông tin sau:
+  </p>
+  <ul>
+    <li><strong>Mã hợp đồng</strong></li>
+    <li><strong>Họ và tên nhân viên</strong></li>
+    <li><strong>Vị trí công việc</strong></li>
+    <li><strong>Ngày bắt đầu hợp đồng</strong></li>
+    <li><strong>Mức lương cơ bản</strong></li>
+    <li><strong>Phụ cấp</strong></li>
+  </ul>
+  <p><strong>Yêu cầu bài làm:</strong></p>
+  <ol>
+    <li><strong>Xây dựng lớp Hợp đồng lao động</strong> với các thông tin được mô tả như trên.</li>
+    <li><strong>Xây dựng phương thức get/set</strong> cho thuộc tính <strong>Mã hợp đồng</strong> và <strong>Mức lương cơ bản</strong>. Biết rằng <strong>Mã hợp đồng có 8 ký tự</strong>, trong đó <strong>4 ký tự đầu là "HĐNV"</strong> và <strong>4 ký tự sau là số thể hiện thứ tự hợp đồng của công ty</strong>. Mức lương cơ bản là một số dương.</li>
+    <li><strong>Xây dựng phương thức khởi tạo mặc định</strong>, tạo một hợp đồng với <strong>số thứ tự 1023</strong>, dành cho nhân viên <strong>"Nguyễn Văn A"</strong>, vị trí <strong>Lập trình viên</strong>, bắt đầu làm việc vào <strong>01/03/2025</strong> với mức lương cơ bản <strong>15.000.000 VND</strong> và phụ cấp <strong>2.000.000 VND</strong>.</li>
+    <li><strong>Xây dựng phương thức khởi tạo với tham số</strong> gồm <strong>Mã hợp đồng, Họ và tên nhân viên, Vị trí công việc, Mức lương cơ bản</strong> để tạo hợp đồng với các thông tin đã nhập, mặc định ngày bắt đầu là <strong>01/01/2025</strong> và phụ cấp là <strong>0</strong>.</li>
+    <li><strong>Xây dựng phương thức tính tổng thu nhập của nhân viên</strong>, biết rằng:
+      <ul>
+        <li><strong>Tổng thu nhập = Mức lương cơ bản + Phụ cấp + Thưởng dự án</strong></li>
+        <li><strong>Thưởng dự án</strong> được tính dựa vào loại dự án nhân viên tham gia:
+          <ul>
+            <li><strong>Dự án trong nước</strong>: thưởng <strong>10% mức lương cơ bản</strong></li>
+            <li><strong>Dự án khách hàng nước ngoài</strong>: thưởng <strong>20% mức lương cơ bản</strong></li>
+            <li><strong>Dự án chiến lược (dự án lớn có tầm quan trọng đặc biệt)</strong>: thưởng <strong>30% mức lương cơ bản</strong></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><strong>Xây dựng phương thức tính thuế thu nhập cá nhân</strong>, biết rằng:
+      <ul>
+        <li>Thuế TNCN = <strong>Tỷ lệ thuế * (Tổng thu nhập - Mức giảm trừ)</strong></li>
+        <li>Tỷ lệ thuế hiện tại là <strong>10%</strong></li>
+        <li>Mức giảm trừ là <strong>11.000.000 VND</strong></li>
+      </ul>
+    </li>
+    <li><strong>Chính sách hỗ trợ nhân viên</strong>:
+      <ul>
+        <li>Nếu làm <strong>trên 5 năm</strong> tại công ty, được hỗ trợ <strong>5.000.000 VND/năm</strong></li>
+        <li>Nếu làm <strong>trên 10 năm</strong>, được hỗ trợ <strong>10.000.000 VND/năm</strong></li>
+        <li>Nếu là <strong>quản lý dự án</strong> thì được hỗ trợ thêm <strong>3.000.000 VND</strong> mỗi hợp đồng</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+
+    <section class="grading-rules card">
+      <h2><i class="fas fa-star"></i> Thang Điểm Bài Kiểm Tra (Tổng 10 điểm)</h2>
+      <div style="overflow-x:auto;">
+        <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse;">
+          <thead style="background:#eef3fb;">
+            <tr>
+              <th>Mục tiêu</th>
+              <th>Nội dung đánh giá</th>
+              <th>Điểm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Xây dựng đúng lớp <code>HopDongLaoDong</code> với đầy đủ thuộc tính.</td>
+              <td><strong>1.0</strong></td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Đúng getter/setter cho mã hợp đồng & lương cơ bản, có kiểm tra ràng buộc.</td>
+              <td><strong>1.5</strong></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Viết đúng phương thức khởi tạo mặc định với dữ liệu mẫu.</td>
+              <td><strong>1.0</strong></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Viết đúng phương thức khởi tạo có tham số.</td>
+              <td><strong>1.0</strong></td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>Hàm tính tổng thu nhập đúng với phân biệt loại dự án.</td>
+              <td><strong>2.0</strong></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>Hàm tính thuế TNCN đúng công thức, đúng điều kiện.</td>
+              <td><strong>1.5</strong></td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>Chính sách hỗ trợ nhân viên đúng yêu cầu.</td>
+              <td><strong>1.5</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Bonus</strong></td>
+              <td>Code rõ ràng, có kiểm tra dữ liệu.</td>
+              <td>+0.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:20px;"><strong>Lưu ý khi chấm điểm:</strong></p>
+      <ul>
+        <li>Thiếu 1 phần nhưng đúng cấu trúc → trừ tối đa 50% mục đó.</li>
+        <li>Sai hoàn toàn hoặc không có → 0 điểm.</li>
+        <li>Thiếu kiểm tra dữ liệu hoặc chưa tối ưu → trừ 0.25 – 0.5 điểm.</li>
+      </ul>
+    </section>
+
+
+    <section class="student-form card">
+      <h2><i class="fas fa-user-graduate"></i> Tra Cứu Kết Quả Học Sinh</h2>
+      <div class="form-group">
+        <label for="student-name">Tên học sinh</label>
+        <input type="text" id="student-name" placeholder="Nhập tên học sinh" />
+      </div>
+      <div class="form-group">
+        <label for="student-dob">Ngày sinh</label>
+        <input type="text" id="student-dob" placeholder="Nhập ngày sinh (dd/mm/yyyy)" />
+      </div>
+      <button onclick="checkStudent()">Xem kết quả</button>
+      <p id="error-message" class="error"></p>
+    </section>
+
+    <footer class="footer">@ Pathway - Nguyễn Anh Trọng</footer>
+  </div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const avg = (data.reduce((sum, s) => sum + parseFloat(s.Điểm), 0) / data.length).toFixed(2);
+        document.getElementById('average-score').textContent = avg;
+      });
+
+    function checkStudent() {
+      const name = document.getElementById('student-name').value.trim().toLowerCase();
+      const dob = document.getElementById('student-dob').value.trim();
+
+      fetch('data.json')
+        .then(res => res.json())
+        .then(data => {
+          const student = data.find(s => s['Tên học sinh'].toLowerCase() === name && s['Ngày sinh'] === dob);
+          if (student) {
+            sessionStorage.setItem('student', JSON.stringify(student));
+            window.location.href = 'student.html';
+          } else {
+            document.getElementById('error-message').textContent = 'Không có kết quả phù hợp, vui lòng nhập lại.';
+          }
+        });
+    }
+    fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    const scores = data.map(s => parseFloat(s.Điểm));
+    const total = scores.length;
+    const avg = (scores.reduce((sum, s) => sum + s, 0) / total).toFixed(2);
+    document.getElementById('average-score').textContent = avg;
+
+    // Tính tỷ lệ
+    const count10 = scores.filter(s => s === 10).length;
+    const count8plus = scores.filter(s => s >= 8).length;
+    const countUnder8 = scores.filter(s => s < 8 && s > 0).length;
+    const count0 = scores.filter(s => s === 0).length;
+
+    const toPercent = n => ((n / total) * 100).toFixed(1) + '%';
+
+    document.getElementById('ratio-10').textContent = toPercent(count10) + ` (${count10}/${total})`;
+    document.getElementById('ratio-8plus').textContent = toPercent(count8plus) + ` (${count8plus}/${total})`;
+    document.getElementById('ratio-under8').textContent = toPercent(countUnder8) + ` (${countUnder8}/${total})`;
+    document.getElementById('ratio-0').textContent = toPercent(count0) + ` (${count0}/${total})`;
+  });
+
+  </script>
+</body>
+
+</html>

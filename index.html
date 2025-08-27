@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pathway Dashboard – Học phần</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#/">
+        <img src="assets/logo.svg" alt="logo" height="28"/>
+        <span class="fw-semibold">Kết quả toàn học phần</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+          <li class="nav-item"><a class="btn btn-sm btn-light text-primary" href="#/"><i class="bi bi-grid"></i> Tổng quan</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-outline-light" href="#/he2"><i class="bi bi-journal-check"></i> Bài kiểm tra (Hệ 2)</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-outline-light" href="#/he3"><i class="bi bi-kanban"></i> Bài tập lớn (Hệ 3)</a></li>
+          <li class="nav-item"><a class="btn btn-sm btn-outline-light" href="#" id="btnPrint"><i class="bi bi-printer"></i> In / Xuất</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-hero text-white py-4">
+    <div class="container">
+      <h1 class="h3 mb-1">Lập trình Web Django (Pathway) – Học phần 3: Lập trình hướng đối tượng</h1>
+      <p class="mb-0 small opacity-75">-1 = chưa được add vào lớp (không tính vào tỷ lệ điểm danh)</p>
+    </div>
+  </header>
+  <main class="container my-4"><div id="app"></div></main>
+  <footer class="footer mt-auto py-4 bg-white border-top">
+    <div class="container small text-muted d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-2">
+      <div><strong>Giáo viên phụ trách:</strong> Nguyễn Anh Trọng – <a href="mailto:natrong@codersden.space" class="text-decoration-none">natrong@codersden.space</a> – <a href="tel:0901621640" class="text-decoration-none">0901621640</a></div>
+      <div>© <span id="year"></span> Pathway Dashboard</div>
+    </div>
+  </footer>
+  <script>document.addEventListener('DOMContentLoaded',()=>{document.getElementById('year').textContent=new Date().getFullYear();});</script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>window.__RAW = {"hocPhan": "Lập trình Web Django (Pathway) – Học phần 3: Lập trình hướng đối tượng", "ghiChu": "-1 = chưa được add vào lớp (không tính vào tỷ lệ điểm danh)", "teacherNotes": {}, "hs": [{"stt": 1, "ma": "Teky_Holding-000230", "ten": "Dương Tuấn Tú", "dob": "17/11/2010", "diemdanh": [-1, -1, -1, -1, -1, 0, 1, 1, 1, 1, 1, 1], "he1_raw": [-1, -1, -1, -1, -1, -1, 8, 8, 8.25, 8], "chuyenCan": 9.0, "he1": 8.06, "he2": 8.0, "he3": 6.3, "nangLuc": 7.16, "trungBinh": 7.34, "xepLoai": "Khá", "dd_rate": 85.7}, {"stt": 2, "ma": "HCM-PXL-000714", "ten": "Nguyễn Nguyên Phú", "dob": "27/01/2009", "diemdanh": [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1], "he1_raw": [7, 7.5, 7, 8, 7, 8.5, 7, 8, -1, 7], "chuyenCan": 8.0, "he1": 7.44, "he2": 8.0, "he3": 8.3, "nangLuc": 8.06, "trungBinh": 8.05, "xepLoai": "Giỏi", "dd_rate": 83.3}, {"stt": 3, "ma": "HCM-NTT-004563", "ten": "Phan Tấn Phúc", "dob": "13/06/2009", "diemdanh": [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0], "he1_raw": [8, 8, 8, 8, 9, -1, 8, 8, 8.25, 8], "chuyenCan": 8.0, "he1": 8.14, "he2": 7.5, "he3": 8.3, "nangLuc": 8.01, "trungBinh": 8.01, "xepLoai": "Giỏi", "dd_rate": 83.3}, {"stt": 4, "ma": "Teky_HCM01-000826", "ten": "Nguyễn Đinh Thiên Phú", "dob": "23/11/2009", "diemdanh": [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1], "he1_raw": [8, 8, 8, 8.5, -1, 7, 8, 7, 7.5, 8], "chuyenCan": 8.0, "he1": 7.78, "he2": 6.0, "he3": 7.74, "nangLuc": 7.17, "trungBinh": 7.25, "xepLoai": "Khá", "dd_rate": 83.3}, {"stt": 5, "ma": "TE-000266", "ten": "Phan Triết An", "dob": "07/05/2007", "diemdanh": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], "he1_raw": [6, 7, 6, 7, 7, 7, 6, 6, 7, 6], "chuyenCan": 9.0, "he1": 6.5, "he2": 5.0, "he3": 6.3, "nangLuc": 5.9, "trungBinh": 6.21, "xepLoai": "Trung bình", "dd_rate": 91.7}, {"stt": 6, "ma": "Teky_HCM01-000665", "ten": "Phù Minh Phúc", "dob": "07/08/2009", "diemdanh": [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1], "he1_raw": [4, 4, -1, 5, 4.5, 4, 4.5, 3, 3.5, 0], "chuyenCan": 8.0, "he1": 3.61, "he2": 0.0, "he3": 7.74, "nangLuc": 4.47, "trungBinh": 4.82, "xepLoai": "Yếu", "dd_rate": 83.3}, {"stt": 7, "ma": "Teky_HCM01-000556", "ten": "Nguyễn Tuấn Kiệt", "dob": "15/02/2010", "diemdanh": [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1], "he1_raw": [6, 7, -1, 7, 7.5, 7, 6.5, 6.5, 7.25, 8], "chuyenCan": 9.0, "he1": 6.97, "he2": 8.0, "he3": 7.74, "nangLuc": 7.7, "trungBinh": 7.83, "xepLoai": "Khá", "dd_rate": 91.7}, {"stt": 8, "ma": "HCM-DS17-000714", "ten": "Trần Nguyên Khang", "dob": "06/09/2007", "diemdanh": [1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1], "he1_raw": [9, 9.5, 9, 9.75, -1, 9.25, 9, -1, 9.25, 9], "chuyenCan": 8.0, "he1": 9.22, "he2": 8.5, "he3": 8.3, "nangLuc": 8.52, "trungBinh": 8.47, "xepLoai": "Giỏi", "dd_rate": 83.3}], "kpi": {"avgTB": 7.25, "avgH1": 7.21, "avgH2": 6.38, "avgH3": 7.59, "avgDD": 85.7, "top": "HCM-DS17-000714"}};</script>
+  <script>window.__HE2_ENTRY = "ket-qua-kiem-tra-lan-1-hp3-0011-main/index.html"; window.__HE3_ENTRY = "ket-qua-bai-tap-lon-0008-hoc-phan-3-main/index.html";</script>
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
