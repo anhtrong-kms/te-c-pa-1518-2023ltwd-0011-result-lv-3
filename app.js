@@ -194,6 +194,85 @@ function renderStudent(ma){
     </div></div></div>`;
   app.appendChild(summary);
 
+
+  // ATTENDANCE
+  const attCard = document.createElement("div");
+  attCard.className = "card card-soft mb-3";
+  const arr = Array.isArray(s.diemdanh) ? s.diemdanh : [];
+  const pres = arr.filter(v=>v===1).length;
+  const absn = arr.filter(v=>v===0).length;
+  const na = arr.filter(v=>v===-1).length;
+  const total = pres + absn;
+  const rate = total ? (pres/total*100).toFixed(1) : "0.0";
+  const attRows = arr.map((v,i)=>`<tr><td>Buổi ${i+1}</td><td>${attLabel(v)}</td></tr>`).join("");
+  attCard.innerHTML = `<div class="card-body">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h3 class="h6 mb-0">Điểm danh 12 buổi</h3>
+      <div class="small text-muted">Tỷ lệ: <strong>${rate}%</strong> • Có mặt: <strong>${pres}</strong> • Vắng: <strong>${absn}</strong> • N/A: <strong>${na}</strong></div>
+    </div>
+    <div class="legend mb-2">
+      <span><i class="att-dot att-1"></i> Có mặt (1)</span>
+      <span><i class="att-dot att-0"></i> Vắng (0)</span>
+      <span><i class="att-dot att--1"></i> N/A (-1)</span>
+    </div>
+    <div class="d-flex flex-wrap gap-2 mb-3">${arr.map((v,i)=>`<div class="text-center"><div class="att-dot att-${v}" title="Buổi ${i+1}: ${attLabel(v)}"></div><div class="small text-muted mt-1">${i+1}</div></div>`).join("")}</div>
+    <div class="table-responsive"><table class="table table-sm table-bordered mb-0">
+      <thead><tr><th>Buổi</th><th>Trạng thái</th></tr></thead>
+      <tbody>${attRows}</tbody>
+    </table></div>
+  </div>`;
+  app.appendChild(attCard);
+
+  // DETAIL SCORES
+  const detail = document.createElement("div");
+  detail.className = "card card-soft mb-3";
+  const raw = (s.he1_raw||[]);
+  const valid = raw.filter(v=>typeof v==='number' && v>=0);
+  const minv = valid.length ? Math.min(...valid) : null;
+  const maxv = valid.length ? Math.max(...valid) : null;
+  const avgv = valid.length ? (valid.reduce((a,b)=>a+b,0)/valid.length) : null;
+  const rowsH1 = raw.map((v,i)=>{
+    const show = (typeof v==='number' && v>=0) ? v : 'N/A';
+    return `<tr><td>Bài ${i+1}</td><td class="text-end">10</td><td class="text-end">${show}</td></tr>`;
+  }).join("");
+  detail.innerHTML = `<div class="card-body">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h3 class="h6 mb-0">Bảng điểm chi tiết</h3>
+      <div class="small text-muted">${valid.length?`Min: <strong>${minv.toFixed(2)}</strong> • TB: <strong>${avgv.toFixed(2)}</strong> • Max: <strong>${maxv.toFixed(2)}</strong>`:'Không có dữ liệu Hệ 1 (raw)'}</div>
+    </div>
+
+    ${raw.length ? `
+    <div class="table-responsive mb-3">
+      <table class="table table-bordered align-top mb-0">
+        <thead class="table-light">
+          <tr><th style="width:40%">Hệ 1 – Bài tại lớp</th><th class="text-end" style="width:15%">Điểm tối đa</th><th class="text-end" style="width:15%">Điểm thực nhận</th></tr>
+        </thead>
+        <tbody>${rowsH1}</tbody>
+      </table>
+    </div>
+    <div><canvas id="lineHe1" height="140"></canvas></div>
+    ` : ``}
+
+    <div class="table-responsive mt-3">
+      <table class="table table-bordered align-top mb-0">
+        <thead class="table-light"><tr><th>Nội dung</th><th class="text-end">Điểm tối đa</th><th class="text-end">Điểm thực nhận</th></tr></thead>
+        <tbody>
+          <tr><td>Bài kiểm tra (Hệ 2)</td><td class="text-end">10</td><td class="text-end">${(typeof s.he2==='number')? s.he2 : 'N/A'}</td></tr>
+          <tr><td>Bài tập lớn (Hệ 3)</td><td class="text-end">10</td><td class="text-end">${(typeof s.he3==='number')? s.he3 : 'N/A'}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+  app.appendChild(detail);
+
+  if (typeof Chart !== "undefined" && raw.length){
+    const labels = raw.map((_,i)=>"Bài "+(i+1));
+    const vals = raw.map(v => (typeof v==="number" && v>=0? v : null));
+    new Chart(byId("lineHe1"), { type:"line",
+      data:{ labels, datasets:[ { label:"Điểm bài tập (Hệ 1 – raw)", data: vals, borderWidth:1, spanGaps:true } ] },
+      options:{ responsive:true, plugins:{legend:{position:"bottom"}}, scales:{ y:{ suggestedMin:0, suggestedMax:10 } } }
+    });
+  }
   if (typeof Chart !== "undefined"){
     const avgH1 = DATA.kpi.avgH1, avgH2 = DATA.kpi.avgH2, avgH3 = DATA.kpi.avgH3;
     new Chart(byId("radarHS"), { type:"radar",
@@ -222,6 +301,8 @@ function renderStudent(ma){
   </div>`;
   app.appendChild(remark);
 }
+
+function attLabel(v){ return v===1?"Có mặt":(v===0?"Vắng":"N/A"); }
 
 function progress(label, val, max){
   const pct = Math.max(0, Math.min(100, (val/max)*100));
